@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-
+import { ModalController } from '@ionic/angular/';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -15,7 +15,8 @@ export class LoginPage implements OnInit {
   constructor(
     public afAuth: AngularFireAuth,
     private router: Router,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private mc: ModalController
   ) {}
 
   ngOnInit() {}
@@ -27,7 +28,7 @@ export class LoginPage implements OnInit {
       this.router.navigate(['/details']);
     } catch (err) {
       if ((err = 'auth/invalid-email')) {
-        this.presentAlert('Login error', 'Invalid email');
+        this.presentAlert('Login error', 'Invalid email or password');
       }
     }
   }
@@ -39,5 +40,9 @@ export class LoginPage implements OnInit {
       buttons: ['OK'],
     });
     await alert.present();
+  }
+
+  async dismiss() {
+    await this.mc.dismiss();
   }
 }

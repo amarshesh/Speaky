@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
-
+import { ModalController } from '@ionic/angular/';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -16,11 +16,16 @@ export class RegisterPage implements OnInit {
 
   constructor(
     private router: Router,
+    private mc: ModalController,
     public anAuth: AngularFireAuth,
     public alertController: AlertController
   ) {}
 
   ngOnInit() {}
+
+  async dismiss() {
+    await this.mc.dismiss();
+  }
 
   async register() {
     const { email, password, confirmPassword } = this;

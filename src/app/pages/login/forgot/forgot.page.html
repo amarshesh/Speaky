@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div class="title">
+    <h1 class="header"><strong>Forgot Password</strong></h1>
+
+
+    <ion-item class="input">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <div  class="button" >
+      <ion-button expand="block">
+        <ion-label (click)="forgot(email)">Change Password</ion-label>
+      </ion-button>
+      <ion-button expand="block">
+        <ion-label routerLink="/login">Back to login</ion-label>
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

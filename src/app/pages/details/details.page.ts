@@ -4,7 +4,8 @@ import { ChangeDetectorRef } from '@angular/core';
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 import { PromiseType } from 'protractor/built/plugins';
-
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-details',
   templateUrl: './details.page.html',
@@ -17,6 +18,8 @@ export class DetailsPage implements OnInit {
   constructor(
     private speechRecognition: SpeechRecognition,
     private ptf: Platform,
+    private router: Router,
+    private authAf: AngularFireAuth,
     private nvc: NavController,
     private cd: ChangeDetectorRef,
     private tts: TextToSpeech
@@ -45,13 +48,17 @@ export class DetailsPage implements OnInit {
     this.isRecording = false;
     this.speechRecognition.stopListening().then(() => {});
   }
-
+  logout() {
+    this.authAf.signOut().then(() => {
+      this.router.navigateByUrl('/welcome');
+    });
+  }
   speak(text) {
     console.log(text);
     this.tts
       .speak(text)
       .then(() => console.log('Success'))
-      .catch((reason: any) => console.log(reason));
+      .catch((reason: any   ) => console.log(reason));
   }
   supplimentry() {}
 }

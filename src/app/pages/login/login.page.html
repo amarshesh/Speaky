@@ -1,33 +1,34 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class = "ion-padding">
 
-<ion-item>
-  <ion-label  position="floating"> Email</ion-label>
-  <ion-input [(ngModel)]="email" type="text"></ion-input>
+<ion-content class="ion-padding">
+  <div class="title">
+    <h1 class="header"><strong>Login</strong></h1>
+  </div>
 
-</ion-item>
-<ion-item>
-  <ion-label  position="floating"> Password</ion-label>
-
-  <ion-input [(ngModel)]="password"  type="password"></ion-input>
-</ion-item>
-
-  <ion-item>
-    <ion-button  shape="round" (click)="login()">
-      Login
-</ion-button>
+  <ion-item class="input">
+    <ion-label position="floating"> Email</ion-label>
+    <ion-input type="email" [(ngModel)]="email"></ion-input>
   </ion-item>
-  <p class="ion-text-center">
-    <!-- <ion-spinner >
- 
-    </ion-spinner> -->
-  </p>
-  <p class="ion-text-center">Don't have account?
-    <ion-button shape="round" class="ion-text-center" routerLink="/register"> Register</ion-button>
-  </p>
+  <ion-item class="input">
+    <ion-label position="floating"> Password</ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+  <div class="input" class="ion-margin-top ion-text-right forget">
+    <a [routerLink]="['/login/forgot']">Forgot Password?</a>
+  </div>
+
+  <div class="ion-margin-top">
+    <ion-button expand="block" (click)="login()">LOGIN</ion-button>
+  </div>
+
+  <div class="ion-margin-top ion-text-center">
+    <a [routerLink]="['/register']">Don't have an account</a>
+    <br />
+    <br />
+  </div>
 </ion-content>
